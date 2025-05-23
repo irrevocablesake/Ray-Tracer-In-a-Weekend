@@ -1,0 +1,52 @@
+#include "Dimension3.h"
+
+#include<iostream>
+#include <cmath>
+
+class Vector3 : public Dimension3<Vector3>{
+    public: 
+
+        using Dimension3::x;
+        using Dimension3::y;
+        using Dimension3::z;
+
+        Vector3() : Dimension3() {}
+        Vector3( const double &c0, const double &c1, const double &c2 ) : Dimension3( c0, c1, c2 ) {}
+
+        double length() const;
+        double lengthSquared() const;
+
+        Vector3 operator-() const;
+};
+
+double Vector3::length() const{
+    return sqrt( lengthSquared() );
+}
+
+double Vector3::lengthSquared() const{
+    return x() * x() + y() * y() + z() * z();
+}
+
+Vector3 Vector3::operator-() const{
+    return Vector3( -x(), -y(), -z() );
+}
+
+inline double dot( const Vector3 &dimension0, const Vector3 &dimension1 ){
+  return dimension0.x() * dimension1.x() + dimension0.y() * dimension1.y() + dimension0.z() * dimension1.z();
+}
+
+inline Vector3 cross( const Vector3 &dimension0, const Vector3 &dimension1 ){
+  return Vector3(
+    dimension0.y() * dimension1.z() - dimension0.z() * dimension1.y(),
+    dimension0.z() * dimension1.x() - dimension0.x() * dimension1.z(),
+    dimension0.x() * dimension1.y() - dimension0.y() * dimension1.x()
+  );
+}
+
+inline Vector3 unitVector( const Vector3 &vector ){
+    return vector / vector.length();
+}
+
+inline std::ostream &operator<<( std::ostream &out, const Vector3 &vector ){
+    return out << vector.x() << ' ' << vector.y() << ' ' << vector.z() << '\n';
+}

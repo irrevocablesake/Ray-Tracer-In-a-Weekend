@@ -1,0 +1,8 @@
+1) const void...
+2) function( const int xyz )
+3) function( const int &value )
+4) function( .. ) const ~ or combinations of above
+
+----
+
+cerr | clog | cout ~ which is buffered
