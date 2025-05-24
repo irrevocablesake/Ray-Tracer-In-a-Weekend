@@ -2,13 +2,17 @@
 
 #include<iostream>
 #include "Ray.h"
+#include "Camera.h"
+#include "Image.h"
 
 int main(){
 
-    const int IMAGE_HEIGHT = 400;
+    
     const int IMAGE_WIDTH = 400;
+    Image image( IMAGE_WIDTH );
 
-    Renderer renderer( IMAGE_WIDTH, IMAGE_HEIGHT );
+    Renderer renderer( image );
+    renderer.initialize();
     renderer.render();
 
     return 0;

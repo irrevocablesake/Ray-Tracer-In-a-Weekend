@@ -1,3 +1,6 @@
+#ifndef COLOR3_H
+#define COLOR3_H
+
 #include "Dimension3.h"
 
 #include<iostream>
@@ -24,6 +27,20 @@ double Color3::b() const{
     return z();
 }
 
+Color3 operator*( double t, const Color3 &color ){
+    return Color3( t * color.r(), t * color.g(), t * color.b() );
+}
+
+Color3 operator+( const Color3 &colorA, const Color3 &colorB ){
+    return Color3( colorA.r() + colorB.r(), colorA.g() + colorB.g(), colorA.b() + colorB.b() );
+}
+
+Color3 lerpColor( const Color3 &colorA, const Color3 &colorB, double factor ) {
+    return ( 1 - factor ) * colorA + factor * colorB;
+}
+
 inline std::ostream &operator<<( std::ostream &out, const Color3 &color ){
     return out << color.r() << ' ' << color.g() << ' ' << color.b() << '\n';
 }
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef VECTOR3_H
+#define VECTOR3_H
+
 #include "Dimension3.h"
 
 #include<iostream>
@@ -47,6 +50,15 @@ inline Vector3 unitVector( const Vector3 &vector ){
     return vector / vector.length();
 }
 
+inline Vector3 normalizeVector( const Vector3 &vector ){
+    return Vector3( 0.5 * ( vector.x() + 1.0 ), 
+                    0.5 * ( vector.y() + 1.0 ), 
+                    0.5 * ( vector.z() + 1.0 ) 
+                  );
+}
+
 inline std::ostream &operator<<( std::ostream &out, const Vector3 &vector ){
     return out << vector.x() << ' ' << vector.y() << ' ' << vector.z() << '\n';
 }
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef POINT3_H
+#define POINT3_H
+
 #include "Dimension3.h"
 
 #include<iostream>
@@ -22,3 +25,5 @@ Point3 Point3::operator-() const{
 inline std::ostream &operator<<( std::ostream &out, const Point3 &point ){
     return out << point.x() << ' ' << point.y() << ' ' << point.z() << '\n';
 }
+
+#endif
