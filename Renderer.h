@@ -8,6 +8,7 @@
 #include "Ray.h"
 #include "Image.h"
 #include "Viewport.h"
+#include "World.h"
 #include<iostream>
 
 class Renderer{
@@ -15,9 +16,10 @@ class Renderer{
         Image image;
         Viewport viewport;
         Camera camera;
+        World world;
         
     public: 
-        Renderer( const Image &image ) : image( image ) {}
+        Renderer( const World &world, const Image &image ) : world( world ), image( image ) {}
 
         void initialize();
 
@@ -31,7 +33,14 @@ Color3 Renderer::processPixelColor( Ray &ray ){
     Color3 blue( 0.5, 0.7, 1.0 );
     Color3 red( 1.0, 0.0, 0.0 );
 
-    Color3 color = lerpColor( red, blue, ray.direction().y() );
+    bool hit = world.raycast( ray );
+
+    if( hit ){
+        return Color3( 1, 0, 0 );
+    }
+
+    Vector3 normalizedDirection = normalizeVector( ray.direction() );
+    Color3 color = lerpColor( white, blue, normalizedDirection.y() );
     
     return color;
 }
@@ -66,9 +75,8 @@ void Renderer::render(){
             Point3 pixelPosition = viewport.topLeftCorner + ( i * viewport.pixelDeltaHeight ) + ( j * viewport.pixelDeltaWidth );
 
             Vector3 direction = unitVector( pixelPosition - camera.position );
-            Vector3 normalizedDirection = normalizeVector( direction );
             
-            Ray ray( camera.position, normalizedDirection );
+            Ray ray( camera.position, direction );
 
             Color3 pixelColor = processPixelColor( ray );
             writePixelColor( std::cout, pixelColor );

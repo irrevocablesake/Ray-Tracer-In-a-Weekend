@@ -14,6 +14,13 @@ class Ray{
 
         Point3 at( double t ) const;
 
+    public:
+        // Point3 point;
+        // double t;
+        // Vector3 normal;
+
+        bool hit;
+
     private:
         Point3 _origin;
         Vector3 _vector;
