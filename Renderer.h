@@ -9,6 +9,9 @@
 #include "Image.h"
 #include "Viewport.h"
 #include "World.h"
+#include "Interval.h"
+#include "IntersectionManager.h"
+#include "Material.h"
 #include<iostream>
 
 class Renderer{
@@ -32,17 +35,28 @@ Color3 Renderer::processPixelColor( Ray &ray ){
     Color3 white( 1.0, 1.0, 1.0 );
     Color3 blue( 0.5, 0.7, 1.0 );
     Color3 red( 1.0, 0.0, 0.0 );
+    Color3 black( 0.0, 0.0, 0.0 );
 
-    bool hit = world.raycast( ray );
+    IntersectionManager intersectionManager;
 
+    bool hit = world.raycast( ray, Interval( 0, INF ), intersectionManager );
+
+    
+    
     if( hit ){
-        return Color3( 1, 0, 0 );
+
+        Ray scattered;
+        Color3 attenuation;
+
+        intersectionManager.material -> scatter( ray, attenuation, scattered, intersectionManager ) ){
+        
+        return attenuation;
     }
 
-    Vector3 normalizedDirection = normalizeVector( ray.direction() );
+    Vector3 normalizedDirection = normalizeVector( unitVector( ray.direction() ) );
     Color3 color = lerpColor( white, blue, normalizedDirection.y() );
     
-    return color;
+    return blue;
 }
 
 void Renderer::writePixelColor( std::ostream &out, const Color3 &pixelColor ){
@@ -64,7 +78,7 @@ void Renderer::initialize(){
 }
 
 void Renderer::render(){
-    
+
     std::cout << "P3\n" << image.width << ' ' << image.height << '\n' << "255\n";
 
     for( int i = 0; i < image.height; i++ ){
@@ -72,11 +86,9 @@ void Renderer::render(){
         std::clog << "\rScanlines remaining: " << image.height - ( i + 1 ) << ' ' <<  std::flush; 
 
         for( int j = 0; j < image.width; j++ ){
-            Point3 pixelPosition = viewport.topLeftCorner + ( i * viewport.pixelDeltaHeight ) + ( j * viewport.pixelDeltaWidth );
+            Point3 pixelPosition = viewport.pixel00Location + ( i * viewport.pixelDeltaHeight ) + ( j * viewport.pixelDeltaWidth );
 
-            Vector3 direction = unitVector( pixelPosition - camera.position );
-            
-            Ray ray( camera.position, direction );
+            Ray ray( camera.position, pixelPosition - camera.position  );
 
             Color3 pixelColor = processPixelColor( ray );
             writePixelColor( std::cout, pixelColor );

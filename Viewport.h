@@ -25,7 +25,7 @@ class Viewport {
         Point3 pixel00Location;
 
         //is this correct to use
-        double shrinkFactor = 0.005;
+        double shrinkFactor = 0.009;
 
         Viewport() {} 
 
