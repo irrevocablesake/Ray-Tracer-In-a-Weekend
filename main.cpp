@@ -13,7 +13,7 @@ using std::make_shared;
 
 int main(){
     
-    const int IMAGE_WIDTH = 1920;
+    const int IMAGE_WIDTH = 640;
     Image image( IMAGE_WIDTH );
 
     World world;

@@ -33,15 +33,27 @@ class Renderer{
         void writePixelColor( std::ostream &out, const Color3 &pixelColor );
 };
 
+inline double linearToGamma( double linearComponent ){
+    if( linearComponent > 0 ){
+        return std::sqrt( linearComponent );
+    }
+
+    return 0;
+}
+
 void Renderer::writePixelColor( std::ostream &out, const Color3 &pixelColor ){
     double rNormalized = pixelColor.r();
     double gNormalized = pixelColor.g();
     double bNormalized = pixelColor.b();
             
+    double rGammaCorrected = linearToGamma( rNormalized );
+    double gGammaCorrected = linearToGamma( gNormalized );
+    double bGammaCorrected = linearToGamma( bNormalized );
+
     static const Interval intensity( 0.000, 1.000 );
-    int rChannel = 255 * intensity.clamp( rNormalized );
-    int gChannel = 255 * intensity.clamp( gNormalized );
-    int bChannel = 255 * intensity.clamp( bNormalized );
+    int rChannel = 255 * intensity.clamp( rGammaCorrected );
+    int gChannel = 255 * intensity.clamp( gGammaCorrected );
+    int bChannel = 255 * intensity.clamp( bGammaCorrected );
 
     std::cout << rChannel << ' ' << gChannel << ' ' << bChannel << '\n';
 }
