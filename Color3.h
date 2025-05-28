@@ -31,6 +31,10 @@ Color3 operator*( double t, const Color3 &color ){
     return Color3( t * color.r(), t * color.g(), t * color.b() );
 }
 
+Color3 operator*( Color3 &a, Color3 &b ){
+    return Color3( a.r() * b.r(), a.g() * b.g(), a.b() * b.b() );
+}
+
 Color3 operator+( const Color3 &colorA, const Color3 &colorB ){
     return Color3( colorA.r() + colorB.r(), colorA.g() + colorB.g(), colorA.b() + colorB.b() );
 }

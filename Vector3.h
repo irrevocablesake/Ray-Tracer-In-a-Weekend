@@ -20,7 +20,14 @@ class Vector3 : public Dimension3<Vector3>{
         double lengthSquared() const;
 
         Vector3 operator-() const;
+
+        bool nearZero() const;
 };
+
+bool Vector3::nearZero() const {
+  double delta = 1e-8;
+  return ( std::fabs(x()) < delta ) && ( std::fabs(y()) < delta ) && ( std::fabs(z()) < delta );
+}
 
 double Vector3::length() const{
     return sqrt( lengthSquared() );

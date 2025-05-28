@@ -4,6 +4,8 @@
 #include "Color3.h"
 #include "Ray.h"
 #include "IntersectionManager.h"
+#include "Random.h"
+#include "Vector3.h"
 
 class Material {
     public:
@@ -20,6 +22,35 @@ class Normal : public Material {
             scattered = Ray( intersectionManager.point, intersectionManager.normal );
             attenuation = 0.5 * Color3( scattered.direction().x() + 1, scattered.direction().y() + 1, scattered.direction().z() + 1 );
         }
+};
+
+class Diffuse : public Material {
+    public:
+        Diffuse() {}
+        Diffuse( Color3 color ) : albedo( color ) {}
+
+        Vector3 reflected( const Vector3 &normal ) const{
+            Vector3 unitVector = generateRandomUnitVector();
+            if( dot( unitVector, normal ) > 0.0 ){
+                return unitVector;
+            }
+            
+            return -unitVector;
+        }
+
+        void scatter( const Ray &ray, Color3 &attenuation, Ray &scattered, IntersectionManager &intersectionManager ) const override {
+            Vector3 reflectedVector = intersectionManager.normal + reflected( intersectionManager.normal );
+
+            if( reflectedVector.nearZero() ){
+                reflectedVector = intersectionManager.normal;
+            }
+            
+            scattered = Ray( intersectionManager.point, reflectedVector );
+            attenuation = albedo;
+        }
+
+    private:
+        Color3 albedo;
 };
 
 #endif

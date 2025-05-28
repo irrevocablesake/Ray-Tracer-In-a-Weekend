@@ -22,7 +22,7 @@ class Renderer{
         World world;
         PixelSampler pixelSampler;
         
-        int samplesPerPixel = 1;
+        int samplesPerPixel = 100;
 
     public: 
         Renderer( const World &world, const Image &image ) : world( world ), image( image ) {}
