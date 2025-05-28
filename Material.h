@@ -53,4 +53,23 @@ class Diffuse : public Material {
         Color3 albedo;
 };
 
+class Metal : public Material {
+    public:
+
+        Metal( const Color3 &color ) : albedo( color ) { }
+
+        Vector3 reflected( const Vector3 & vector, const Vector3 &normal ) const{
+            return vector - 2 * dot( vector, normal ) * normal;
+        }
+
+        void scatter( const Ray &ray, Color3 &attenuation, Ray &scattered, IntersectionManager &intersectionManager ) const override {
+            Vector3 reflectedVector = reflected( ray.direction(), intersectionManager.normal );
+            scattered = Ray( intersectionManager.point, reflectedVector );
+            attenuation = albedo;
+        }
+
+    private:
+        Color3 albedo;
+};
+
 #endif
