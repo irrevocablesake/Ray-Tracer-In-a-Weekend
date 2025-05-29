@@ -60,8 +60,17 @@ void Renderer::writePixelColor( std::ostream &out, const Color3 &pixelColor ){
 
 void Renderer::initialize(){
 
-    camera.focalLength = 1.0;
     camera.vFOV = 90;
+    camera.lookFrom = Point3( -2,2,1 );
+    camera.lookAt = Point3( 0,0,-1);
+    camera.vup = Vector3( 0, 1, 0 );
+
+    camera.updatePosition();
+
+    camera.focalLength = ( camera.lookFrom - camera.lookAt ).length();
+
+    camera.updateOrientation();
+
     viewport = Viewport( image, camera );
     pixelSampler = PixelSampler( camera, viewport, samplesPerPixel );
 }

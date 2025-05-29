@@ -44,15 +44,13 @@ class Viewport {
             height = 2 * h * camera.focalLength;
             width = height * ( double ( image.width ) / image.height );
 
-            position = camera.position - Vector3( 0, 0, camera.focalLength );
-
-            widthVector = Vector3( width, 0, 0 );
-            heightVector = Vector3( 0, -height, 0 );
+            widthVector = width * camera.u;
+            heightVector = height * -camera.v;
 
             pixelDeltaWidth = widthVector / image.width;
             pixelDeltaHeight = heightVector / image.height;
 
-            topLeftCorner = position - widthVector / 2 - heightVector / 2;
+            topLeftCorner = camera.position - (camera.focalLength * camera.w ) - widthVector / 2 - heightVector / 2;
 
             pixel00Location = topLeftCorner + 0.5 * ( pixelDeltaWidth + pixelDeltaHeight  );
         }
