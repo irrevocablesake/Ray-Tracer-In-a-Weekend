@@ -4,18 +4,20 @@
 #include "Vector3.h"
 #include "Point3.h"
 #include "Ray.h"
+#include "Random.h"
 
 class Camera{
     public:
         Point3 position;
 
-        //distance b/w sensor and lens
-        double focalLength;
         double vFOV;
 
         Point3 lookFrom;
         Point3 lookAt;
         Vector3 vup;
+
+        double defocusAngle = 0;
+        double focusDistance = 10;
 
         Camera() : position( 0, 0, 0 ) { }
 
@@ -29,10 +31,28 @@ class Camera{
             v = cross( w, u );
         }
 
+        
+        Vector3 randomInUnitDisk() {
+            while( true ){
+                Vector3 p = Vector3( generateRandomNumber( -1, 1 ), generateRandomNumber( -1, 1 ), 0 );
+                if( p.lengthSquared() < 1 ){
+                    return p;
+                }
+            }
+        }
+
+        Point3 defocusDiskSample() {
+            Vector3 v = randomInUnitDisk();
+            return position + ( v[0] * defocusDiskU ) + ( v[1] * defocusDiskV );
+        }
+
     public:
         Vector3 u;
         Vector3 v;
         Vector3 w;
+
+        Vector3 defocusDiskU;
+        Vector3 defocusDiskV;
 };
 
 #endif

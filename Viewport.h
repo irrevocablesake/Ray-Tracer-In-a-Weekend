@@ -35,13 +35,13 @@ class Viewport {
             return degrees * PI / 180.0;
         }
 
-        Viewport( const Image &image, const Camera &camera ) {
+        Viewport( const Image &image, Camera &camera ) {
             width = shrinkFactor * image.width;
             height = width / ( double ( image.width ) / image.height );
 
             double theta = degreesToRadians( camera.vFOV );
             double h = std::tan( theta / 2 );
-            height = 2 * h * camera.focalLength;
+            height = 2 * h * camera.focusDistance;
             width = height * ( double ( image.width ) / image.height );
 
             widthVector = width * camera.u;
@@ -50,9 +50,13 @@ class Viewport {
             pixelDeltaWidth = widthVector / image.width;
             pixelDeltaHeight = heightVector / image.height;
 
-            topLeftCorner = camera.position - (camera.focalLength * camera.w ) - widthVector / 2 - heightVector / 2;
+            topLeftCorner = camera.position - (camera.focusDistance * camera.w ) - widthVector / 2 - heightVector / 2;
 
             pixel00Location = topLeftCorner + 0.5 * ( pixelDeltaWidth + pixelDeltaHeight  );
+
+            double defocusRadius = camera.focusDistance * std::tan( degreesToRadians( camera.defocusAngle / 2 ));
+            camera.defocusDiskU = camera.u * defocusRadius;
+            camera.defocusDiskV = camera.v * defocusRadius;
         }
 };
 

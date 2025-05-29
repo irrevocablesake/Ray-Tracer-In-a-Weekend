@@ -18,8 +18,6 @@ int main(){
 
     World world;
 
-    auto R = std::cos(PI/4);
-
     auto material_ground = make_shared<Diffuse>(Color3(0.8, 0.8, 0.0));
     auto material_center = make_shared<Diffuse>(Color3(0.1, 0.2, 0.5));
     auto material_left   = make_shared<Dielectric>(1.50);
