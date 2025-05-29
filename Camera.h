@@ -9,6 +9,7 @@ class Camera{
 
         //distance b/w sensor and lens
         double focalLength;
+        double vFOV;
 
         Camera() : position( 0, 0, 0 ) { }
 };

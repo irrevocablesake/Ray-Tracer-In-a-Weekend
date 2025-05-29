@@ -7,6 +7,8 @@
 #include "Point3.h"
 #include "Ray.h"
 
+const double PI = 3.1415926535897932385;
+
 class Viewport {
     public: 
         double width;
@@ -29,9 +31,18 @@ class Viewport {
 
         Viewport() {} 
 
+        double degreesToRadians(double degrees) {
+            return degrees * PI / 180.0;
+        }
+
         Viewport( const Image &image, const Camera &camera ) {
             width = shrinkFactor * image.width;
             height = width / ( double ( image.width ) / image.height );
+
+            double theta = degreesToRadians( camera.vFOV );
+            double h = std::tan( theta / 2 );
+            height = 2 * h * camera.focalLength;
+            width = height * ( double ( image.width ) / image.height );
 
             position = camera.position - Vector3( 0, 0, camera.focalLength );
 

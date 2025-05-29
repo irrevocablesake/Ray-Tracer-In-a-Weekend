@@ -18,12 +18,13 @@ int main(){
 
     World world;
 
-    world.add( make_shared< Sphere > ( Point3( -1, 0, -1 ), 0.5, make_shared< Dielectric >( 1.50 )));
-    world.add( make_shared< Sphere > ( Point3( -1, 0, -1 ), 0.4, make_shared< Dielectric >( 1.00 / 1.50 )));
-    world.add( make_shared< Sphere > ( Point3( 0, 0, -1 ), 0.5, make_shared< Diffuse >( Color3( 0.4, 0.4, 0.4 )  )));
-    world.add( make_shared< Sphere > ( Point3( 1, 0, -1 ), 0.5, make_shared< Metal >( Color3( 1.0, 1.0, 1.0 ), 0.0  )));
+    auto R = std::cos(PI/4);
 
-    world.add( make_shared< Sphere > ( Point3( 0, -100.5, -1 ), 100, make_shared< Diffuse >( Color3( 0.4, 0.4, 0.4 )  )));
+    auto material_left  = make_shared<Diffuse>(Color3(0,0,1));
+    auto material_right = make_shared<Diffuse>(Color3(1,0,0));
+
+    world.add(make_shared<Sphere>(Point3(-R, 0, -1), R, material_left));
+    world.add(make_shared<Sphere>(Point3( R, 0, -1), R, material_right));
 
     Renderer renderer( world, image );
     renderer.initialize();
