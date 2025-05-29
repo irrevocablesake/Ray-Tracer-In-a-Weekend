@@ -54,11 +54,11 @@
             Ray scattered;
             Color3 attenuation;
 
-            intersectionManager.material -> scatter( ray, attenuation, scattered, intersectionManager );
-
-            Color3 value = processPixelColor( scattered, world, maxDepth - 1 );
-
-            return attenuation * value;
+            if( intersectionManager.material -> scatter( ray, attenuation, scattered, intersectionManager ) ){
+                Color3 value = processPixelColor( scattered, world, maxDepth - 1 );
+                return attenuation * value;
+            }
+            return Color3( 0, 0, 0 );
         }
 
         Vector3 normalizedDirection = normalizeVector( unitVector( ray.direction() ) );
