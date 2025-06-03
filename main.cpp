@@ -13,8 +13,9 @@ using std::make_shared;
 
 int main(){
     
-    const int IMAGE_WIDTH = 400;
-    Image image( IMAGE_WIDTH );
+    const int IMAGE_WIDTH = 200;
+    const double ASPECT_RATIO = 16.0 / 9.0;
+    Image image( IMAGE_WIDTH, ASPECT_RATIO );
 
     World world;
 

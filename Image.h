@@ -5,20 +5,23 @@
 
 class Image{
     public:
-        const double ASPECT_RATIO = 16.0 / 9.0;
+        double aspectRatio;
 
         int width;
         int height;
 
-        Image() : width( 2 ), height( 1 ) {}
-        Image( const int &width ) : width( width ) {
+        Image() : width( 640 ), height( 480 ), aspectRatio( double( 16.0 ) / double( 9.0 ) ) {}
+        Image( const int &width, const double &aspectRatio ) : width( width ), aspectRatio( aspectRatio ) {
 
-            if( width <= 1 ){
+            if( width < 1 ){
                 throw std::invalid_argument("Image Width must be atleast 1");
             }
 
-            this -> width = width;
-            this -> height = width / ASPECT_RATIO;
+            this -> height = width / aspectRatio;
+
+            if( this -> height < 1 ){
+                throw std::invalid_argument("Image Height must be atleast 1");
+            }
         }
 };
 
