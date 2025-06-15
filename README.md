@@ -1,7 +1,7 @@
 | Diffuse | Metal |
 |--------|-------|
 | ![](images/1.png) | ![](images/2.png) |
-| ![](images/3.png) | ![](images/gray ground.png) |
+| ![](images/3.png) | ![](images/grayground.png) |
 
 | Diffuse | Metal | Dielectric |
 |--------|-------|-------|
