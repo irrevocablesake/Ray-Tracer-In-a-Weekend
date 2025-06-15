@@ -13,7 +13,7 @@ using std::make_shared;
 
 int main(){
     
-    const int IMAGE_WIDTH = 200;
+    const int IMAGE_WIDTH = 600;
     const double ASPECT_RATIO = 16.0 / 9.0;
     Image image( IMAGE_WIDTH, ASPECT_RATIO );
 
@@ -32,6 +32,16 @@ int main(){
     world.add(make_shared<Sphere>(Point3( 1.0,    0.0, -1.0),   0.5, material_right));
 
     Renderer renderer( world, image );
+
+    renderer.samplesPerPixel = 10;
+    renderer.maxDepth = 10;
+    renderer.vFOV = 20.0;
+    renderer.lookFrom = Point3( -2, 2, 1 );
+    renderer.lookAt = Point3( 0, 0, -1 );
+    renderer.vUp = Vector3( 0, 1, 0 );
+    renderer.defocusAngle = 0;
+    renderer.focusDistance = 10.0;
+
     renderer.initialize();
     renderer.render();
 

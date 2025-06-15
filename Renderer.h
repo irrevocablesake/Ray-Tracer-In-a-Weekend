@@ -21,8 +21,16 @@ class Renderer{
         Camera camera;
         World world;
         PixelSampler pixelSampler;
-        
-        int samplesPerPixel = 100;
+
+    public:
+        int samplesPerPixel = 10;
+        int maxDepth = 10;
+        float vFOV = 90;
+        Point3 lookFrom{ 0, 0, 0 };
+        Point3 lookAt{ 0, 0, -1 };
+        Vector3 vUp{ 0, 1, 0 };
+        float defocusAngle = 1.0;
+        float focusDistance = 1.0;
 
     public: 
         Renderer( const World &world, const Image &image ) : world( world ), image( image ) {}
@@ -60,21 +68,19 @@ void Renderer::writePixelColor( std::ostream &out, const Color3 &pixelColor ){
 
 void Renderer::initialize(){
 
-    camera.vFOV = 20;
-    camera.lookFrom = Point3( -2,2,1 );
-    camera.lookAt = Point3( 0,0,-1);
-    camera.vup = Vector3( 0, 1, 0 );
+    camera.vFOV = vFOV;
+    camera.lookFrom = lookFrom;
+    camera.lookAt = lookAt;
+    camera.vup = vUp;
 
     camera.updatePosition();
-
-    
     camera.updateOrientation();
 
-    camera.defocusAngle = 0.6;
-    camera.focusDistance = 3.4;
+    camera.defocusAngle = defocusAngle;
+    camera.focusDistance = focusDistance;
 
     viewport = Viewport( image, camera );
-    pixelSampler = PixelSampler( camera, viewport, samplesPerPixel );
+    pixelSampler = PixelSampler( camera, viewport, samplesPerPixel, maxDepth );
 }
 
 void Renderer::render(){

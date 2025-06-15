@@ -14,7 +14,7 @@ class Vector3 : public Dimension3<Vector3>{
         using Dimension3::z;
 
         Vector3() : Dimension3() {}
-        Vector3( const double &c0, const double &c1, const double &c2 ) : Dimension3( c0, c1, c2 ) {}
+        Vector3( double c0, double c1, double c2 ) : Dimension3( c0, c1, c2 ) {}
 
         double length() const;
         double lengthSquared() const;

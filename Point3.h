@@ -12,8 +12,8 @@ class Point3 : public Dimension3<Point3>{
         using Dimension3::y;
         using Dimension3::z;
 
-        Point3() : Dimension3() {}
-        Point3( const double &c0, const double &c1, const double &c2 ) : Dimension3( c0, c1, c2 ) {}
+        Point3() : Dimension3() {}        
+        Point3( double c0, double c1, double c2 ) : Dimension3( c0, c1, c2 ) {}
 
         Point3 operator-() const;
 };

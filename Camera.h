@@ -31,16 +31,6 @@ class Camera{
             v = cross( w, u );
         }
 
-        
-        Vector3 randomInUnitDisk() {
-            while( true ){
-                Vector3 p = Vector3( generateRandomNumber( -1, 1 ), generateRandomNumber( -1, 1 ), 0 );
-                if( p.lengthSquared() < 1 ){
-                    return p;
-                }
-            }
-        }
-
         Point3 defocusDiskSample() {
             Vector3 v = randomInUnitDisk();
             return position + ( v[0] * defocusDiskU ) + ( v[1] * defocusDiskV );

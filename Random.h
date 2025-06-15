@@ -31,4 +31,13 @@ inline Vector3 generateRandomUnitVector(){
     }
 }
 
+inline Vector3 randomInUnitDisk() {
+    while( true ){
+        Vector3 p = Vector3( generateRandomNumber( -1, 1 ), generateRandomNumber( -1, 1 ), 0 );
+        if( p.lengthSquared() < 1 ){
+            return p;
+        }
+    }
+}
+
 #endif

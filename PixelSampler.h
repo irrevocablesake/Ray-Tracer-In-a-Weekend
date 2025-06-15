@@ -16,13 +16,15 @@
     class PixelSampler{
         public:
             int samplesPerPixel;
+            int maxDepth;
+
+        public:
             double average;
             Viewport viewport;
             Camera camera;
-            int maxDepth = 50;
 
             PixelSampler() {} 
-            PixelSampler( Camera &camera, Viewport &viewport, int samplesPerPixel ) : camera( camera ), viewport( viewport ), samplesPerPixel( samplesPerPixel ) {
+            PixelSampler( Camera &camera, Viewport &viewport, int samplesPerPixel, int maxDepth ) : camera( camera ), viewport( viewport ), samplesPerPixel( samplesPerPixel ), maxDepth( maxDepth ) {
                 average = 1 / double( samplesPerPixel );
             }
 
@@ -47,8 +49,6 @@
 
         bool hit = world.raycast( ray, Interval( 0.001, INF ), intersectionManager );
 
-        
-        
         if( hit ){
 
             Ray scattered;
