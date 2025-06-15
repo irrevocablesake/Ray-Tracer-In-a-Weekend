@@ -79,7 +79,7 @@
             Point3 pixelSample = viewport.pixel00Location + ( ( i + offset.x() ) * viewport.pixelDeltaHeight ) + ( ( j + offset.y() ) * viewport.pixelDeltaWidth );
 
             Point3 origin = ( camera.defocusAngle <= 0 ) ? camera.position : camera.defocusDiskSample();
-            Ray ray( origin, ( pixelSample - camera.position ) );
+            Ray ray( origin, ( pixelSample - origin ) );
 
             pixelColor += processPixelColor( ray, world, maxDepth );
         }

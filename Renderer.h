@@ -77,7 +77,13 @@ void Renderer::initialize(){
     camera.updateOrientation();
 
     camera.defocusAngle = defocusAngle;
-    camera.focusDistance = focusDistance;
+
+    if( focusDistance <= 0 ){
+        camera.focusDistance = ( lookFrom - lookAt ).length();
+    }
+    else{
+        camera.focusDistance = focusDistance;
+    }
 
     viewport = Viewport( image, camera );
     pixelSampler = PixelSampler( camera, viewport, samplesPerPixel, maxDepth );

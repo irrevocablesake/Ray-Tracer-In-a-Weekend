@@ -36,9 +36,6 @@ class Viewport {
         }
 
         Viewport( const Image &image, Camera &camera ) {
-            width = shrinkFactor * image.width;
-            height = width / ( double ( image.width ) / image.height );
-
             double theta = degreesToRadians( camera.vFOV );
             double h = std::tan( theta / 2 );
             height = 2 * h * camera.focusDistance;
