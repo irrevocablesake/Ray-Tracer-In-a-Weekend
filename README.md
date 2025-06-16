@@ -36,4 +36,4 @@
 
 | Dielectric | Dielectric inside Dielectric |
 |-------|---------|
-| ![](images/dielectric/dielectric.png) | ![](images/dielectric/dielectricInsideDielectricReRender.png) |
+| ![](images/dielectric/dielctric.png) | ![](images/dielectric/dielectricInsideDielectricReRender.png) |
