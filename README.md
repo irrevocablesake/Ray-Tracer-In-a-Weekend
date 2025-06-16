@@ -23,14 +23,14 @@ Metal, as a material consists of two major properties: reflectance and color of 
 <table>
     <thead>
     <tr>
-      <th width="50%">Column 1 Title</th>
-      <th width="50%">Column 2 Title</th>
+      <th width="50%">Description</th>
+      <th width="50%">Metal Reflecting Into Metal</th>
     </tr>
   </thead>
   <tbody>
   <tr>
     <td width="50%">
-      dsdfsdf
+      Here, we can see that we have placed two metal spheres beside each other, with fuzz factor set to 0. Adhering to the laws of physics, we can see the spheres reflecting into each other
     </td>
     <td width="50%">
       <img src="images/metal/metalIntoMetalreflection.png" width="100%">
