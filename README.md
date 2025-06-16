@@ -14,6 +14,13 @@
 
 
 <table>
+    <thead>
+    <tr>
+      <th width="50%">Column 1 Title</th>
+      <th width="50%">Column 2 Title</th>
+    </tr>
+  </thead>
+  <tbody>
   <tr>
     <td width="50%">
       dsdfsdf
@@ -22,4 +29,5 @@
       <img src="images/metal/metalIntoMetalreflection.png" width="100%">
     </td>
   </tr>
+    </tbody>
 </table>
