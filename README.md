@@ -4,6 +4,6 @@
 
 ## Material ShowCase
 
-| Solid | Diffuse |
-|-------|---------|
-| ![](images/solid/render.png) | ![](images/diffuse/render.png) |
+| Solid | Diffuse | Normal |
+|-------|---------|--------|
+| ![](images/solid/render.png) | ![](images/diffuse/render.png) | ![](images/normal/render.png) |
