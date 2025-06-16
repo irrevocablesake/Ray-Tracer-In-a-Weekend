@@ -1,8 +1,9 @@
-| Diffuse | Metal |
-|--------|-------|
-| ![](images/1.png) | ![](images/2.png) |
-| ![](images/3.png) | ![](images/grayground.png) |
+# Ray Tracer In a Weekend
 
-| Diffuse | Metal | Dielectric |
-|--------|-------|-------|
-| ![](images/5.png) | ![](images/6.png) | ![](images/7.png) |
+![](images/heroRender.png)
+
+## Material ShowCase
+
+| Solid | Diffuse |
+|-------|---------|
+| ![](images/solid/render.png) | ![](images/diffuse/render.png) |
