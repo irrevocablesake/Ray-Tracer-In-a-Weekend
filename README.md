@@ -48,6 +48,10 @@ Dielectrics are materials that are weka conductors of electricty, like wool, wat
 |-------|---------|
 | ![](images/dielectric/dielctric.png) | ![](images/dielectric/dielectricInsideDielectricReRender.png) |
 
+### Bounced Reflections
+
+Here you can see that there is a white sphere in the scene. It get's a slightly tinted color due to the rays bouncing into the sky and ground
+
 <div align="center">
 <table>
     <thead>
