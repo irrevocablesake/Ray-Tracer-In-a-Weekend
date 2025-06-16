@@ -51,6 +51,14 @@
 
         if( hit ){
 
+             if (dynamic_cast<Normal*>(intersectionManager.material.get())) {
+                return 0.5 * Color3(
+                    intersectionManager.normal.x() + 1,
+                    intersectionManager.normal.y() + 1,
+                    intersectionManager.normal.z() + 1
+                );
+            }
+
             Ray scattered;
             Color3 attenuation;
 
