@@ -12,6 +12,14 @@
 |-------|---------|--------|
 | ![](images/metal/fuzz0.png) | ![](images/metal/fuzz0.5.png) | ![](images/metal/fuzz1.png) |
 
-| Desc | Metal Metal Reflection |
-|-------|---------|
-| here goes the description | ![](images/metal/metalIntoMetalreflection.png) |
+
+<table>
+  <tr>
+    <td width="50%">
+      dsdfsdf
+    </td>
+    <td width="50%">
+      <img src="images/metal/metalIntoMetalreflection.png" width="100%">
+    </td>
+  </tr>
+</table>
