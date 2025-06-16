@@ -32,3 +32,8 @@
     </tbody>
 </table>
 </div>
+
+
+| Dielectric | Dielectric inside Dielectric |
+|-------|---------|--------|
+| ![](images/dielectric/dielectric.png) | ![](images/dielectric/dielectricInsideDielectricReRender.png) |
