@@ -58,3 +58,7 @@
     </tbody>
 </table>
 </div>
+
+| SPP 1 | SPP 100 | SPP 500 |
+|-------|---------|--------|
+| ![](images/antiAliasing/spp1-upscaled.png) | ![](images/antiAliasing/spp100-upscaled.png) | ![](images/antiAliasing/spp500-upscaled.png) |
