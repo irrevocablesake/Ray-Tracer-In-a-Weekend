@@ -71,3 +71,7 @@
 | defocus Distance | defocus Distance |
 |-------|---------|
 | ![](images/defocusDistance/render1.png) | ![](images/defocusDistance/render2.png) |
+
+| fov 20 | fov 90 |
+|-------|---------|
+| ![](images/fov/20.png) | ![](images/fov/90.png) |
