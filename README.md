@@ -73,6 +73,10 @@ Here you can see that there is a white sphere in the scene. It get's a slightly 
 </table>
 </div>
 
+### Anti-Aliasing
+
+Anti-Aliasing is the smoothning of jagged stairs that appear in images. In real life images are continuous, so we also implement that by averaging the pixel values, so we get a smooth gradient for pixels
+
 | SPP 1 | SPP 100 | SPP 500 |
 |-------|---------|--------|
 | ![](images/antiAliasing/spp1-upscaled.png) | ![](images/antiAliasing/spp100-upscaled.png) | ![](images/antiAliasing/spp500-upscaled.png) |
