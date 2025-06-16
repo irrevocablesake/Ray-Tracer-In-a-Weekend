@@ -122,3 +122,7 @@ SPP: sampling rate, basically how many extra rays should we cast per ray. More r
 | max Depth 2 SPP 2 | max Depth 50 SPP 500 |
 |-------------------|----------------------|
 | ![](images/maxDepth/maxdepth2samplerate2.png) | ![](images/maxDepth/maxdepth50samplerate500.png) |
+
+### sdfsf
+
+![](images/metal/fuzz0.png)
