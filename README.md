@@ -81,7 +81,7 @@
 | ![](images/maxDepth/maxdepth2samplerate500.png) | ![](images/maxDepth/maxdepth10samplerate500.png) |
 
 | max Depth 50 SPP 2 | max Depth 50 SPP 50 | 
-|-------|---------|--------|
+|--------------------|---------------------|
 | ![](images/maxDepth/maxdepth50samplerate2.png) | ![](images/maxDepth/maxdepth50samplerate50.png) | 
 
 | max Depth 2 SPP 2 | max Depth 50 SPP 500 |
