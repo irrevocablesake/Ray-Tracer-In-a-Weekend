@@ -56,8 +56,8 @@ Here you can see that there is a white sphere in the scene. It get's a slightly 
 <table>
     <thead>
     <tr>
-      <th width="50%">Column 1 Title</th>
-      <th width="50%">Column 2 Title</th>
+      <th width="50%">Descrpiptnoe</th>
+      <th width="50%">You can see the bluish tint at the top due to sky and a greenish tint at the bottom of the pshere due to the ground</th>
     </tr>
   </thead>
   <tbody>
