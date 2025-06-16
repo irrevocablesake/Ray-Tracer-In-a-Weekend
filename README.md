@@ -32,3 +32,29 @@
     </tbody>
 </table>
 </div>
+
+
+| Dielectric | Dielectric inside Dielectric |
+|-------|---------|
+| ![](images/dielectric/dielctric.png) | ![](images/dielectric/dielectricInsideDielectricReRender.png) |
+
+<div align="center">
+<table>
+    <thead>
+    <tr>
+      <th width="50%">Column 1 Title</th>
+      <th width="50%">Column 2 Title</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td width="50%">
+      dsdfsdf
+    </td>
+    <td width="50%">
+      <img src="images/boundedReflections/render.png" width="100%">
+    </td>
+  </tr>
+    </tbody>
+</table>
+</div>
