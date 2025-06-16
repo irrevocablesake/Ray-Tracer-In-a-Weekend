@@ -22,8 +22,27 @@ class Normal : public Material {
             scattered = Ray( intersectionManager.point, intersectionManager.normal );
             attenuation = 0.5 * Color3( scattered.direction().x() + 1, scattered.direction().y() + 1, scattered.direction().z() + 1 );
         
-            return true;
+            return false;
         }
+};
+
+class Solid : public Material {
+    public:
+        Solid( Color3 color ) : albedo( color ) {}
+
+        bool scatter( const Ray &ray, Color3 &attenuation, Ray &scattered, IntersectionManager &intersectionManager ) const override {
+            scattered = Ray( intersectionManager.point, intersectionManager.normal );
+            attenuation = albedo;
+        
+            return false;
+        }
+
+        Color3 getAlbedo() const {
+            return albedo;
+        }
+
+    private:
+        Color3 albedo;
 };
 
 class Diffuse : public Material {

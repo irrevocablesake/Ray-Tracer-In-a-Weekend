@@ -51,7 +51,11 @@
 
         if( hit ){
 
-             if (dynamic_cast<Normal*>(intersectionManager.material.get())) {
+            if( auto solidMaterial = dynamic_cast<Solid*>(intersectionManager.material.get()) ){
+                return solidMaterial -> getAlbedo();
+            }
+
+            if (dynamic_cast<Normal*>(intersectionManager.material.get()) ) {
                 return 0.5 * Color3(
                     intersectionManager.normal.x() + 1,
                     intersectionManager.normal.y() + 1,
