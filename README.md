@@ -13,5 +13,5 @@
 | ![](images/metal/fuzz0.png) | ![](images/metal/fuzz0.5.png) | ![](images/metal/fuzz1.png) |
 
 | Desc | Metal Metal Reflection |
-|-------|---------|--------|
+|-------|---------|
 | here goes the description | ![](images/metal/metalIntoMetalReflection.png) |
