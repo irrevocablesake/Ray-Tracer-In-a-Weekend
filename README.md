@@ -67,3 +67,7 @@
 |-------|---------|--------|
 | ![](images/defocusAngle/0.0.png) | ![](images/defocusAngle/0.5.png) | ![](images/defocusAngle/1.0.png) |
 
+
+| defocus Distance | defocus Distance |
+|-------|---------|
+| ![](images/defocusDistance/render1.png) | ![](images/defocusDistance/render2.png) |
