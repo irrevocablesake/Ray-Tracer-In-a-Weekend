@@ -62,3 +62,8 @@
 | SPP 1 | SPP 100 | SPP 500 |
 |-------|---------|--------|
 | ![](images/antiAliasing/spp1-upscaled.png) | ![](images/antiAliasing/spp100-upscaled.png) | ![](images/antiAliasing/spp500-upscaled.png) |
+
+| defocus Angle 0.0 | defocus Angle 0.5 | defocus Angle 1.0 |
+|-------|---------|--------|
+| ![](images/defocusAngle/0.0.png) | ![](images/defocusAngle/0.5.png) | ![](images/defocusAngle/1.0.png) |
+
