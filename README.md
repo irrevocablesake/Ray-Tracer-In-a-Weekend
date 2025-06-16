@@ -81,18 +81,35 @@ Anti-Aliasing is the smoothning of jagged stairs that appear in images. In real 
 |-------|---------|--------|
 | ![](images/antiAliasing/spp1-upscaled.png) | ![](images/antiAliasing/spp100-upscaled.png) | ![](images/antiAliasing/spp500-upscaled.png) |
 
+### De-focus Angle
+
+Defocus Angle, When we have depth of field ~ we techincially divide the iamge into two major areas: one sharp and other blurred. This factor helps us to control how much should we blur the "blurry" areas
+
 | defocus Angle 0.0 | defocus Angle 0.5 | defocus Angle 1.0 |
 |-------|---------|--------|
 | ![](images/defocusAngle/0.0.png) | ![](images/defocusAngle/0.5.png) | ![](images/defocusAngle/1.0.png) |
 
+### De-focus Distance
+
+Defoucs Distance, When we have depth of field ~ we have a field and objects lying in this field will seem sharp and objects further or before this feild would blur. This value helps us to move the depth of field around
 
 | defocus Distance | defocus Distance |
 |-------|---------|
 | ![](images/defocusDistance/render1.png) | ![](images/defocusDistance/render2.png) |
 
+### FOV
+
+FOV (Field of View) refers to the extent of the observable world that is seen at any given moment. We control this using vertical FOV
+
 | fov 20 | fov 90 |
 |-------|---------|
 | ![](images/fov/20.png) | ![](images/fov/90.png) |
+
+### Max Depth & SPP
+
+Max Depth refers to how many bounces each ray can potentially have. More number allows more information to gather and less leads to less number to gather
+
+SPP: sampling rate, basically how many extra rays should we cast per ray. More rays mean more values to average for a certain pixel. Fun Fact: since for SPP we cast extra rays, it's additional cost, the DOF uses this additional cost to it's benefit and implements blurring by smartly deviating the rays 
 
 | max Depth 2 SPP 500 | max Depth 10 SPP 500|
 |---------|--------|
