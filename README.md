@@ -52,7 +52,7 @@
       dsdfsdf
     </td>
     <td width="50%">
-      <img src="images/boundedReflections/render.png" width="100%">
+      <img src="images/bouncedReflections/render.png" width="100%">
     </td>
   </tr>
     </tbody>
