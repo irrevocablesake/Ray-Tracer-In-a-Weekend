@@ -11,7 +11,7 @@
 | ![](images/solid/render.png) | ![](images/diffuse/render.png) | ![](images/normal/render.png) |
 
 ### Metal
-<hr>
+
 Metal, as a material consists of two major properties: reflectance and color of the metal itself. The reflectance can also have a "fuzz" factor just like in real life. Below you can see a progression of fuzz factor from shiny metal ball to almost diffuse metal ball ( acts just like a diffuse spehre m aterial )
 <br>
 
