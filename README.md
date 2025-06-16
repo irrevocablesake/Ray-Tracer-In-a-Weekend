@@ -41,6 +41,9 @@ Metal, as a material consists of two major properties: reflectance and color of 
 </div>
 
 ###  Dielectric
+
+Dielectrics are materials that are weka conductors of electricty, like wool, water, sand, air etc.. Here we tried to simulate "glass" and that too implemeintg reflection, refraction and total internal reflection
+
 | Dielectric | Dielectric inside Dielectric |
 |-------|---------|
 | ![](images/dielectric/dielctric.png) | ![](images/dielectric/dielectricInsideDielectricReRender.png) |
