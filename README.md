@@ -12,7 +12,7 @@
 |-------|---------|--------|
 | ![](images/metal/fuzz0.png) | ![](images/metal/fuzz0.5.png) | ![](images/metal/fuzz1.png) |
 
-
+<div align="center">
 <table>
     <thead>
     <tr>
@@ -31,3 +31,4 @@
   </tr>
     </tbody>
 </table>
+</div>
