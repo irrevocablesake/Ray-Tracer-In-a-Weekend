@@ -40,7 +40,7 @@ Metal, as a material consists of two major properties: reflectance and color of 
 </table>
 </div>
 
-
+###  Dielectric
 | Dielectric | Dielectric inside Dielectric |
 |-------|---------|
 | ![](images/dielectric/dielctric.png) | ![](images/dielectric/dielectricInsideDielectricReRender.png) |
