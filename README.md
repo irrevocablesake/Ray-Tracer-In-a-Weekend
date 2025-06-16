@@ -52,9 +52,13 @@
       dsdfsdf
     </td>
     <td width="50%">
-      <img src="images/boundedReflections/render.png" width="100%">
+      <img src="images/BouncedReflections/render.png" width="100%">
     </td>
   </tr>
     </tbody>
 </table>
 </div>
+
+| SPP 1 | SPP 100 | SPP 500 |
+|-------|---------|--------|
+| ![](images/antiAliasing/spp1-upscaled.png) | ![](images/antiAliasing/spp100-upscaled.png) | ![](images/antiAliasing/spp500-upscaled.png) |
