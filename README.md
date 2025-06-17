@@ -1,128 +1,352 @@
 # Ray Tracer In a Weekend
 
-![](images/heroRender.png)
+<p align="center">
+  <img src="images/hero/render.png" width="80%"/>
+  <br>
+  <em>A Hero Render</em>
+</p>
 
-## Material ShowCase
+SPHERS, SPHERS ANDDDDDDD SPHERES...
 
-### Simple Materials
+I spent a weekend, technically 1-2 hours each spread out over course of a month ~ shooting rayss. More Technically, I build a Ray Tracer and more specifically it's a PathTracer with features like:
 
-| Solid | Diffuse | Normal |
-|-------|---------|--------|
-| ![](images/solid/render.png) | ![](images/diffuse/render.png) | ![](images/normal/render.png) |
+- Geomtry: Sphere ( just one for now )
+- Materials
+- Anti-Aliasing
+- Depth of Field A.K.A Defocus Blur
+- Positionable Camera
+- Renderable Image with Custom Dimensions
 
-### Metal
+Andd when I said, I was shooting rays ~ I meant it. To give a gist: We shoot a lot of rays, like 50 billion lot. Ideally, in best case scenario we would shoot roughly over 1 billion rays and in worst case scenario we would shoot roughly over 50 billion rays ( depending upon properties of the ray tracer, scene, and Randomnesss )
 
-Metal, as a material consists of two major properties: reflectance and color of the metal itself. The reflectance can also have a "fuzz" factor just like in real life. Below you can see a progression of fuzz factor from shiny metal ball to almost diffuse metal ball ( acts just like a diffuse spehre m aterial )
-<br>
+The code in this repository is highly customized, written more of in a way that I want. I tried my best to keep it structured, and potentially expandable. I have implemented it in C++, used gcc compiler for generating an exe file. There also is a python script that I utilized to upscale lower resolution Images for showcasing anti-aliasing. With that said, following is a showcase of materials and different features
 
-| Metal ( 0 fuzz ) | Metal ( 0.5 fuzz ) | Metal ( 1 fuzz ) |
-|-------|---------|--------|
-| ![](images/metal/fuzz0.png) | ![](images/metal/fuzz0.5.png) | ![](images/metal/fuzz1.png) |
+## Material Showcase
+
+### Basic Materials
+
+This section demonstrates different materials that exist, and how they interact with light ( with respect to physics ). Each Material is implemented takes care of two things: attenuation and scattering. And depending upon just two factors we have created a bunch of materials. A quick glance at list of materials that are present in the code base:
+- Normal
+- Diffuse 
+- Solid
+- Metal
+- Dielectric
 
 <div align="center">
 <table>
-    <thead>
-    <tr>
-      <th width="50%">Description</th>
-      <th width="50%">Metal Reflecting Into Metal</th>
-    </tr>
-  </thead>
   <tbody>
-  <tr>
-    <td width="50%">
-      Here, we can see that we have placed two metal spheres beside each other, with fuzz factor set to 0. Adhering to the laws of physics, we can see the spheres reflecting into each other
-    </td>
-    <td width="50%">
-      <img src="images/metal/metalIntoMetalreflection.png" width="100%">
-    </td>
-  </tr>
-    </tbody>
+    <tr>
+      <td >
+        <img src="images/solid/render.png" width="100%">
+        <p style="text-align: center; font-style: italic; font-size: 14px; color: #555;">
+          Solid - Flat-colored material,
+        </p>
+      </td>
+      <td>
+        <img src="images/diffuse/render.png" width="100%">
+        <p style="text-align: center; font-style: italic; font-size: 14px; color: #555;">
+          Diffuse - A Lambertian surface that scatters light evenly in all directions.
+        </p>
+      </td>
+      <td>
+        <img src="images/normal/render.png" width="100%">
+        <p style="text-align: center; font-style: italic; font-size: 14px; color: #555;">
+          Normal - Visualizes the normal vectors
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+### Metal
+
+Metal, as a material consists of two major properties: reflectance and color of the metal itself. The reflectance can also have a "fuzz" factor just like in real life. Below you can see a progression of fuzz factor from shiny metal ball to almost diffuse metal ball ( acts just like a diffuse spehre material )
+
+<div align="center">
+<table>
+  <tbody>
+    <tr>
+      <td >
+        <img src="images/metal/fuzz0.png" width="100%">
+        <p style="text-align: center; font-style: italic; font-size: 14px; color: #555;">
+          Metal - 0 fuzz
+        </p>
+      </td>
+      <td>
+        <img src="images/metal/fuzz0.5.png" width="100%">
+        <p style="text-align: center; font-style: italic; font-size: 14px; color: #555;">
+          Metal 0.5 fuzz
+        </p>
+      </td>
+      <td>
+        <img src="images/metal/fuzz1.png" width="100%">
+        <p style="text-align: center; font-style: italic; font-size: 14px; color: #555;">
+          Metal 1 fuzz
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+Just to showcase the "magic" of PathTracing, I have also created the following two scenarios:
+- metal + metal reflections: You can see the infinite reflection pattern on both the spheres ( just like real life )
+- metal + dielectric reflections: You can see the faint reflections of a glass sphere and also the glass sphere reflecting + refracting the metal sphere
+
+<div align="center">
+<table>
+  <tbody>
+    <tr>
+      <td >
+        <img src="images/metal/dielectricIntoMetalReflection.png" width="100%">
+        <p style="text-align: center; font-style: italic; font-size: 14px; color: #555;">
+          Dielectric Reflecting Into Metal
+        </p>
+      </td>
+      <td>
+        <img src="images/metal/metalIntoMetalreflection.png" width="100%">
+        <p style="text-align: center; font-style: italic; font-size: 14px; color: #555;">
+          Metal Reflecting Into Metal
+        </p>
+      </td>
+    </tr>
+  </tbody>
 </table>
 </div>
 
 ###  Dielectric
 
-Dielectrics are materials that are weka conductors of electricty, like wool, water, sand, air etc.. Here we tried to simulate "glass" and that too implemeintg reflection, refraction and total internal reflection
-
-| Dielectric | Dielectric inside Dielectric |
-|-------|---------|
-| ![](images/dielectric/dielctric.png) | ![](images/dielectric/dielectricInsideDielectricReRender.png) |
-
-### Bounced Reflections
-
-Here you can see that there is a white sphere in the scene. It get's a slightly tinted color due to the rays bouncing into the sky and ground
+Dielectrics are materials that are weak conductors of electricty, like wool, water, sand, air etc.. Here we tried to simulate "glass" and that too with reflection, refraction and total internal reflection. You might feel that the glass balls are floating due to abscence of shadow but even in real life glass balls rarely have a dense shadow. If you focus at the bottom center of the sphere, you might see a faint patch of shadow
 
 <div align="center">
 <table>
-    <thead>
-    <tr>
-      <th width="50%">Descrpiptnoe</th>
-      <th width="50%">You can see the bluish tint at the top due to sky and a greenish tint at the bottom of the pshere due to the ground</th>
-    </tr>
-  </thead>
   <tbody>
-  <tr>
-    <td width="50%">
-      dsdfsdf
-    </td>
-    <td width="50%">
-      <img src="images/BouncedReflections/render.png" width="100%">
-    </td>
-  </tr>
-    </tbody>
+    <tr>
+      <td >
+        <img src="images/dielectric/dielctric.png" width="100%">
+        <p style="text-align: center; font-style: italic; font-size: 14px; color: #555;">
+          Dielectric
+        </p>
+      </td>
+      <td>
+        <img src="images/dielectric/dielectricInsideDielectricReRender.png" width="100%">
+        <p style="text-align: center; font-style: italic; font-size: 14px; color: #555;">
+          Dielectric Dielectric Reflecctions
+        </p>
+      </td>
+    </tr>
+  </tbody>
 </table>
 </div>
 
 ### Anti-Aliasing
 
-Anti-Aliasing is the smoothning of jagged stairs that appear in images. In real life images are continuous, so we also implement that by averaging the pixel values, so we get a smooth gradient for pixels
+Anti-Aliasing helps reduce the jagged, stair-step edges that can appear in digital images, especially along diagonal lines or curves. In the real world, visual information is continuous, but in a rendered image, we approximate it with a grid of discrete pixels. By taking multiple samples per pixel and averaging the results, anti-aliasing creates smoother transitions and more realistic gradients, resulting in a cleaner and more natural-looking image.
 
-| SPP 1 | SPP 100 | SPP 500 |
-|-------|---------|--------|
-| ![](images/antiAliasing/spp1-upscaled.png) | ![](images/antiAliasing/spp100-upscaled.png) | ![](images/antiAliasing/spp500-upscaled.png) |
+<div align="center">
+<table>
+  <tbody>
+    <tr>
+      <td >
+        <img src="images/antiAliasing/spp1-upscaled.png" width="100%">
+        <p style="text-align: center; font-style: italic; font-size: 14px; color: #555;">
+          SPP 1
+        </p>
+      </td>
+      <td>
+        <img src="images/antiAliasing/spp100-upscaled.png" width="100%">
+        <p style="text-align: center; font-style: italic; font-size: 14px; color: #555;">
+          SPP 100
+        </p>
+      </td>
+      <td>
+        <img src="images/antiAliasing/spp500-upscaled.png" width="100%">
+        <p style="text-align: center; font-style: italic; font-size: 14px; color: #555;">
+          SPP 500
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
-### De-focus Angle
+### Depth of Field 
 
-Defocus Angle, When we have depth of field ~ we techincially divide the iamge into two major areas: one sharp and other blurred. This factor helps us to control how much should we blur the "blurry" areas
+You already must have had experience with depth of Field, when you click photos or even watch vlogs on youtube. You might see that the speaker is sharp but the background is blurred, that is due to depth of field
 
-| defocus Angle 0.0 | defocus Angle 0.5 | defocus Angle 1.0 |
-|-------|---------|--------|
-| ![](images/defocusAngle/0.0.png) | ![](images/defocusAngle/0.5.png) | ![](images/defocusAngle/1.0.png) |
+The "Field" in "Depth of Field" is merely an area in which objects appear sharp, the "Depth" in "Depth of Field" is like "how deep is the field", and mostly we are interested in controlling this so called "Depth". Unfortunately for us, according to our current implementation ( based on book ), we wouldn't be able to control the "deepness" of the field, rather for us ~ it's a "field" where object will appear in focus but more like a "Plane" and what ever is in the plane region will appear sharp. Things further before or after the plane will get blurred.
 
-### De-focus Distance
+Two things can control Depth of Field:
+- De-focus Angle: If there is a blur section in an image, then how much to blur it
+- De-focus Distance: When to place the plane, at this distance everything will be sharp
 
-Defoucs Distance, When we have depth of field ~ we have a field and objects lying in this field will seem sharp and objects further or before this feild would blur. This value helps us to move the depth of field around
+#### De-focus Angle "How much to blur the blurry regions"
 
-| defocus Distance | defocus Distance |
-|-------|---------|
-| ![](images/defocusDistance/render1.png) | ![](images/defocusDistance/render2.png) |
+<div align="center">
+<table>
+  <tbody>
+    <tr>
+      <td >
+        <img src="images/defocusAngle/0.0.png" width="100%">
+        <p style="text-align: center; font-style: italic; font-size: 14px; color: #555;">
+          Defocus Angle 1.0
+        </p>
+      </td>
+      <td>
+        <img src="images/defocusAngle/0.5.png" width="100%">
+        <p style="text-align: center; font-style: italic; font-size: 14px; color: #555;">
+          Defocus Angle 0.5
+        </p>
+      </td>
+      <td>
+        <img src="images/defocusAngle/1.0.png" width="100%">
+        <p style="text-align: center; font-style: italic; font-size: 14px; color: #555;">
+          Defocus Angle 1.0
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+#### De-focus Distance "What region should appear sharp"
+
+<div align="center">
+<table>
+  <tbody>
+    <tr>
+      <td >
+        <img src="images/defocusDistance/render1.png" width="100%">
+        <p style="text-align: center; font-style: italic; font-size: 14px; color: #555;">
+          Defocus Distance
+        </p>
+      </td>
+      <td>
+        <img src="images/defocusDistance/render2.png" width="100%">
+        <p style="text-align: center; font-style: italic; font-size: 14px; color: #555;">
+          Defocus Distance
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 ### FOV
 
-FOV (Field of View) refers to the extent of the observable world that is seen at any given moment. We control this using vertical FOV
+Field of View controls how wide the camera can see. A smaller FOV gives a zoomed-in, narrow perspective, while a larger FOV creates a wide-angle view. We use vFOV here, but also hFOV would have been fine. In our case we supply the vFOV and the dimensions are automatically adjusted
 
-| fov 20 | fov 90 |
-|-------|---------|
-| ![](images/fov/20.png) | ![](images/fov/90.png) |
+<div align="center">
+<table>
+  <tbody>
+    <tr>
+      <td >
+        <img src="images/fov/20.png" width="100%">
+        <p style="text-align: center; font-style: italic; font-size: 14px; color: #555;">
+          FOV 20
+        </p>
+      </td>
+      <td>
+        <img src="images/fov/90.png" width="100%">
+        <p style="text-align: center; font-style: italic; font-size: 14px; color: #555;">
+          FOV 90
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 ### Max Depth & SPP
 
-Max Depth refers to how many bounces each ray can potentially have. More number allows more information to gather and less leads to less number to gather
+In ray tracing, max depth defines the maximum number of times a ray is allowed to bounce (or recurse) before it's terminated. Each bounce represents a light interaction — such as reflection, refraction, or scattering.
+
+In Ray Tracing in One Weekend, this is used to avoid infinite recursion and control render time. A ray that exceeds the max depth is assumed to contribute no more light, and its color is set to black
+
+- A lower max depth results in faster renders but may miss deeper reflections or refractions.
+- A higher max depth produces more realistic images, especially for transparent or reflective materials, but is computationally more expensive.
 
 SPP: sampling rate, basically how many extra rays should we cast per ray. More rays mean more values to average for a certain pixel. Fun Fact: since for SPP we cast extra rays, it's additional cost, the DOF uses this additional cost to it's benefit and implements blurring by smartly deviating the rays 
 
-| max Depth 2 SPP 500 | max Depth 10 SPP 500|
-|---------|--------|
-| ![](images/maxDepth/maxdepth2samplerate500.png) | ![](images/maxDepth/maxdepth10samplerate500.png) |
+<div align="center">
+<table>
+  <tbody>
+    <tr>
+      <td >
+        <img src="images/maxDepth/maxdepth2samplerate500.png" width="100%">
+        <p style="text-align: center; font-style: italic; font-size: 14px; color: #555;">
+          Max Depth 2 SPP 500
+        </p>
+      </td>
+      <td>
+        <img src="images/maxDepth/maxdepth10samplerate500.png" width="100%">
+        <p style="text-align: center; font-style: italic; font-size: 14px; color: #555;">
+          Max Depth 10 SPP 500
+        </p>
+      </td>
+      <td>
+        <img src="images/maxDepth/maxdepth50samplerate500.png" width="100%">
+        <p style="text-align: center; font-style: italic; font-size: 14px; color: #555;">
+          Max Depth 50 SPP 500
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
-| max Depth 50 SPP 2 | max Depth 50 SPP 50 | 
-|--------------------|---------------------|
-| ![](images/maxDepth/maxdepth50samplerate2.png) | ![](images/maxDepth/maxdepth50samplerate50.png) | 
+SPP controls how many rays are shot per pixel to estimate its final color. Instead of casting just one ray, multiple rays with slight random offsets are averaged to reduce noise and achieve anti-aliasing. 
+Fun Fact: Since SPP adds extra rays, the extra rays tend to be additional cost. DOF uses this additional cost to it's benefit and implements the blur effect
 
-| max Depth 2 SPP 2 | max Depth 50 SPP 500 |
-|-------------------|----------------------|
-| ![](images/maxDepth/maxdepth2samplerate2.png) | ![](images/maxDepth/maxdepth50samplerate500.png) |
+<div align="center">
+<table>
+  <tbody>
+    <tr>
+      <td >
+        <img src="images/maxDepth/maxdepth50samplerate2.png" width="100%">
+        <p style="text-align: center; font-style: italic; font-size: 14px; color: #555;">
+          Max Depth 50 SPP 2
+        </p>
+      </td>
+      <td>
+        <img src="images/maxDepth/maxdepth50samplerate50.png" width="100%">
+        <p style="text-align: center; font-style: italic; font-size: 14px; color: #555;">
+          Max Depth 50 SPP 50
+        </p>
+      </td>
+      <td>
+        <img src="images/maxDepth/maxdepth50samplerate500.png" width="100%">
+        <p style="text-align: center; font-style: italic; font-size: 14px; color: #555;">
+          Max Depth 50 SPP 500
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
-### sdfsf
+### Low Depth + Low SPP and Bounced Reflections
 
-![](images/metal/fuzz0.png)
+You can see that low Depth + low SPP, would result into a grainy and dark image because not enough rays are spawned which results in bad sampling and low Depth causes less informatino to be gathered. In the right image, you can see that a image generated with good parameters would give a good anti-aliased + tinted reflections + smooth image
+
+<div align="center">
+<table>
+  <tbody>
+    <tr>
+      <td >
+        <img src="images/maxDepth/maxdepth2samplerate2.png" width="100%">
+        <p style="text-align: center; font-style: italic; font-size: 14px; color: #555;">
+          Max Depth 2 SPP 2
+        </p>
+      </td>
+      <td>
+        <img src="images/BouncedReflections/render.png" width="100%">
+        <p style="text-align: center; font-style: italic; font-size: 14px; color: #555;">
+          Bounced Reflections
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
