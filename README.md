@@ -1,6 +1,6 @@
 # Ray Tracer In a Weekend
 
-![](images/render.png)
+![](images/hero/render.png)
 
 ## Material ShowCase
 
