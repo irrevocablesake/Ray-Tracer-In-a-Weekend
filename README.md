@@ -348,3 +348,6 @@ You can see that low Depth + low SPP, would result into a grainy and dark image 
   </tbody>
 </table>
 </div>
+
+### To be Added
+- bokeh ( star, polygon etc.. )
